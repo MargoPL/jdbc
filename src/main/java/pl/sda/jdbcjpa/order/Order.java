@@ -1,6 +1,7 @@
 package pl.sda.jdbcjpa.order;
 
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import pl.sda.jdbcjpa.person.Customer;
 
 import javax.persistence.*;
@@ -8,6 +9,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
+@Setter
+@Table(name = "Orders")
 @NoArgsConstructor
 public class Order {
 

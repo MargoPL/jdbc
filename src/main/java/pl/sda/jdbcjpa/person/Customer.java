@@ -1,5 +1,6 @@
 package pl.sda.jdbcjpa.person;
 
+import com.google.common.collect.Lists;
 import lombok.*;
 import pl.sda.jdbcjpa.order.Order;
 
@@ -32,6 +33,6 @@ public class Customer {
     @Transient
     private String thisFieldIsNotToPersist;
 
-    @OneToMany(mappedBy = "customer")
-    private List<Order> orderList = new ArrayList<>();
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST)
+    private List<Order> orderList = Lists.newArrayList();
 }
