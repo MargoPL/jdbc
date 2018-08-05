@@ -11,15 +11,28 @@ public class JpaMain {
 
     public static void main(String[] args) {
         createCustomer();
-        findCustomer("Nowak");
+        findCustomerJPQL("Nowak");
+        findCustomerEM(1);
+
+        createCustomerWithOrder();
     }
 
-    private static void findCustomer(String surname) {
+    private static void createCustomerWithOrder() {
+
+    }
+
+    private static void findCustomerEM(Integer id) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Customer customer = entityManager.find(Customer.class, id);
+        System.out.println(customer);
+    }
+
+    private static void findCustomerJPQL(String surname) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         TypedQuery<Customer> query = entityManager.createQuery(
                 "select c from Customer c where c.surname = :surname", Customer.class);
 //        query.setParameter(0, surname);
-        query.setParameter("surname",surname);
+        query.setParameter("surname", surname);
         List<Customer> resultList = query.getResultList();
     }
 

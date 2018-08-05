@@ -1,4 +1,5 @@
 package pl.sda.jdbcjpa.order;
 
-public class OrderStatus {
+public enum OrderStatus {
+    NEW, IN_REALIZATION, FINISHED, CANCELLED
 }
