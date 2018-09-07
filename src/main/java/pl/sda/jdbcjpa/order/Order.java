@@ -2,6 +2,7 @@ package pl.sda.jdbcjpa.order;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.sda.jdbcjpa.BaseEntity;
 import pl.sda.jdbcjpa.person.Customer;
 
 import javax.persistence.*;
@@ -12,11 +13,7 @@ import java.util.Date;
 @Setter
 @Table(name = "Orders")
 @NoArgsConstructor
-public class Order {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+public class Order extends BaseEntity {
 
     private String customerName;
 

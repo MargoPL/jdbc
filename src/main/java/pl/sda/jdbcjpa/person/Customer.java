@@ -2,6 +2,7 @@ package pl.sda.jdbcjpa.person;
 
 import com.google.common.collect.Lists;
 import lombok.*;
+import pl.sda.jdbcjpa.BaseEntity;
 import pl.sda.jdbcjpa.order.Order;
 
 import javax.persistence.*;
@@ -13,12 +14,11 @@ import java.util.List;
 @Setter
 @ToString
 @NoArgsConstructor
-public class Customer {
-
-    @Id
-    @Setter(AccessLevel.NONE)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+@NamedQueries({
+        @NamedQuery(name = "findCustomersByCityLike",
+                query = "select c from Customer c where c.city like :city")
+})
+public class Customer extends BaseEntity{
 
     private String firstName;
 
@@ -34,5 +34,5 @@ public class Customer {
     private String thisFieldIsNotToPersist;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST)
-    private List<Order> orderList = Lists.newArrayList();
+    private List<Order> ordersList = Lists.newArrayList();
 }
